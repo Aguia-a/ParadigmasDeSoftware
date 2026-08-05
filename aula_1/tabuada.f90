@@ -1,12 +1,18 @@
 PROGRAM tabuada
-    
-    INTEGER :: valor, iterador
+    IMPLICIT NONE
+
+    INTEGER :: valor, iterador, erro_leitura
+    CHARACTER(LEN=20) :: entrada
 
     PRINT *, "Digite um valor:"
-    READ *, valor
+    READ (*, *, IOSTAT=erro_leitura) valor
 
-    DO iterador = 1, 10
-        PRINT *, valor, "x", iterador,"= ", valor*iterador
-    END DO
+    IF (erro_leitura /= 0) THEN
+        PRINT *, "Erro: Valor digitado nao e um numero valido!"
+    ELSE
+        DO iterador = 1, 10
+            PRINT *, valor, "x", iterador,"= ", valor*iterador
+        END DO
+    END IF
 
 END PROGRAM tabuada
